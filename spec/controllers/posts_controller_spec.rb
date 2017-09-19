@@ -4,7 +4,14 @@ RSpec.describe PostsController, type: :controller do
 
   let(:my_post) {Post.create(title: RandomData.random_sentence, body: RandomData.random_paragraph)}
   # #8
+
+
   describe "GET #index" do
+    # WIll run before each test
+    before :each do
+      my_post
+    end
+    
     it "returns http success" do
       get :index
       expect(response).to have_http_status(:success)
@@ -23,18 +30,18 @@ RSpec.describe PostsController, type: :controller do
   describe "GET show" do
     it "returns http success" do
       # #16
-      get :show, {id: my_post.id}
+      get :show, params: {id: my_post.id}
       expect(response).to have_http_status(:success)
     end
 
     it "renders the #show view" do
       # #17
-      get :show, {id: my_post.id}
-      expect(reponse).to render_template :show
+      get :show, params: {id: my_post.id}
+      expect(response).to render_template :show
     end
 
     it "assigns my_post to @post" do
-      get :show, {id: my_post.id}
+      get :show, params: {id: my_post.id}
       # #18
       expect(assigns(:post)).to eq(my_post)
     end
@@ -83,13 +90,13 @@ RSpec.describe PostsController, type: :controller do
 
 # #5
     it "assigns the new post to @post" do
-      post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+      post :create, params: {post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}
       expect(assigns(:post)).to eq Post.last
     end
 
 # #6
     it "redirects to the new post" do
-      post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+      post :create, params:{post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}
       expect(response).to redirect_to Post.last
     end
   end
