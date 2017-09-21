@@ -33,3 +33,18 @@ puts "#{Comment.count} comments created"
 
 Post.find_or_create_by(title: "New post!", body: "Hey, I am an original post!")
 
+
+#create ads
+50.times do
+    Advertisement.create!(
+        # #4
+        title: RandomData.random_sentence,
+        body: RandomData.random_paragraph,
+        price: 120
+    )
+end
+
+puts "Seed finished"
+puts "#{Advertisement.count} ads created"
+
+
