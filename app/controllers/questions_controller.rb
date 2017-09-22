@@ -12,10 +12,6 @@ class QuestionsController < ApplicationController
     @question.title = params[:question][:title]
     @question.body = params[:question][:body]
     @question.resolved = params[:question][:resolved]
-  end
-
-  def show
-    @question = Question.find(params[:id])
 
     if @question.save
       # #11
@@ -26,6 +22,11 @@ class QuestionsController < ApplicationController
         flash.now[:alert] = "There was an error saving the question. Please try again."
         render :new
       end
+  end
+
+  def show
+    @question = Question.find(params[:id])
+
   end
 
   def edit
