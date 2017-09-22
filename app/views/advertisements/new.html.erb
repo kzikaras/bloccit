@@ -16,9 +16,14 @@
                 <%= f.text_field :title, class: 'form_control', placeholder: "Enter Ad title" %>
             </div>
             <div class="form-group">
+                <%= f.label :price %>
+                <%= f.number_field :price, class: 'form_control' %>
+            </div>
+            <div class="form-group">
                 <%= f.label :body %>
                 <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter Ad body" %>
             </div>
+        
             <div class="form-group">
                 <%= f.submit "Save", class: 'btn btn-success' %>
             </div>
