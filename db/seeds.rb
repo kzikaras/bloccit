@@ -73,3 +73,15 @@ puts "Seed finished"
 puts "#{Question.count} questions created"
 puts "#{Topic.count} topics created"
 
+#create sponsored posts
+50.times do
+    SponsoredPost.create!(
+        # #4
+        title: RandomData.random_sentence,
+        body: RandomData.random_paragraph,
+        price: 120
+    )
+end
+
+puts "Seed finished"
+puts "#{SponsoredPost.count} Sponsored Posts created"
