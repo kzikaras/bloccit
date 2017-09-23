@@ -22,7 +22,10 @@ Rails.application.routes.draw do
   # get 'advertisements/create'
 
   # #1
-  resources :posts, :advertisements, :questions
+  resources :advertisements, :questions
+  resources :topics do
+    resources :posts, except: [:index]
+  end
 
   # #2
 

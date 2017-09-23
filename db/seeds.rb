@@ -6,6 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'random_data'
+
+
+#create topics
+15.times do
+    Topic.create!(
+        name: RandomData.random_sentence,
+        description: RandomData.random_paragraph
+    )
+end
+topics = Topic.all
+
+
 #create posts
 50.times do
     # #1
@@ -59,4 +71,5 @@ end
 
 puts "Seed finished"
 puts "#{Question.count} questions created"
+puts "#{Topic.count} topics created"
 
