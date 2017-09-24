@@ -23,6 +23,7 @@ topics = Topic.all
     # #1
     Post.create!(
         # #2
+        topic: topics.sample,
         title: RandomData.random_sentence,
         body: RandomData.random_paragraph
     )
@@ -77,6 +78,7 @@ puts "#{Topic.count} topics created"
 50.times do
     SponsoredPost.create!(
         # #4
+        topic: topics.sample,
         title: RandomData.random_sentence,
         body: RandomData.random_paragraph,
         price: 120

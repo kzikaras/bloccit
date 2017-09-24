@@ -6,6 +6,6 @@ class CreateSponsoredPosts < ActiveRecord::Migration[5.1]
       t.integer :price
 
       t.timestamps
-    end
+    end 
   end
 end
