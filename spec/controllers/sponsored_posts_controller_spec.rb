@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PostsController, type: :controller do
+RSpec.describe SponsoredPostsController, type: :controller do
 
   let(:my_topic) {Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)}
   let(:my_sponsored_post) {my_topic.sponsored_posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph)}
@@ -22,19 +22,14 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to render_template :show
     end
 
-    it "assigns my_post to @post" do
+    it "assigns my_sponsored_post to @sponsored_post" do
       get :show, params:{topic_id: my_topic.id, id: my_sponsored_post.id}
       # #18
-      expect(assigns(:sponsored_post)).to eq(my_sponsored_post.id)
+      expect(assigns(:sponsored_post)).to eq(my_sponsored_post)
     end
   end
 
-  # describe "GET #new" do
-  #   it "returns http success" do
-  #     get :new
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+
 
   describe "GET edit" do
     it "returns http success" do
@@ -54,9 +49,9 @@ RSpec.describe PostsController, type: :controller do
 
       post_instance = assigns(:sponsored_post)
 
-      expect(post_instance.id).to eq my_post.id
-      expect(post_instance.title).to eq my_post.title
-      expect(post_instance.body).to eq my_post.body
+      expect(post_instance.id).to eq my_sponsored_post.id
+      expect(post_instance.title).to eq my_sponsored_post.title
+      expect(post_instance.body).to eq my_sponsored_post.body
     end
   end
 
@@ -99,30 +94,6 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  describe "PUT update" do
-    it "updates post with expected attributes" do
-      new_title = RandomData.random_sentence
-      new_body = RandomData.random_paragraph
-
-      put :update, params:{topic_id: my_topic.id, id: my_sponsored_post.id, post: {title: new_title, body: new_body}}
-
-      # #3
-      updated_post = assigns(:sponsored_post)
-      expect(updated_sponsored_post.id).to eq my_sponsored_post.id
-      expect(updated_sponsored_post.title).to eq new_title
-      expect(updated_sponsored_post.body).to eq new_body
-    end
-
-    it "Redirects to the updated post" do
-      new_title = RandomData.random_sentence
-      new_body = RandomData.random_paragraph
-
-      # #4
-      put :update, params:{topic_id: my_topic.id, id: my_sponsored_post.id, post: {title: new_title, body: new_body}}
-      # #30
-      expect(response).to redirect_to [my_topic, my_post]
-    end
-  end
 
   describe "DELETE destroy" do
     it "deletes the post" do
