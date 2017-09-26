@@ -16,3 +16,23 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ .user-info {
+     margin-top: 9px;
+ }
+
+ .nav {
+     margin-top: 5px;
+ }
+ 
+ body {
+     background-color: rgba(175, 190, 241, 0.6);
+ }
+
+ .jumbotron {
+     background-color: rgba(255, 255, 255, 0.4)
+ }
+
+ .nav li {
+     color: white;
+ }
