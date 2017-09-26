@@ -38,6 +38,12 @@ RSpec.describe User, type: :model do
 
   end
 
+  describe "screen method" do
 
-  
+    it "should capitalize first and last name" do
+      user.update_attributes!(name: 'kurt zikaras')
+      expect(user.reload.name).to eq("Kurt Zikaras")
+      puts user.inspect
+    end
+  end
 end

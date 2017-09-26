@@ -1,6 +1,19 @@
 class User < ApplicationRecord
+
+    def screen
+        logger.info " @@@@@@@@@@@@@@@@@  FIELD ARE: #{self.name}"
+        #split name into 2 parts
+        nameArray = self.name.split(' ')
+        #capitalize each part
+        nameArray.each do |name|
+            name.capitalize!
+        end
+        #re-join the names
+        self.name = nameArray.join(' ')
+    end
     # #2
     before_save { self.email = email.downcase if email.present? }
+    before_save :screen
 
     # #3
     validates :name, length: { minimum: 1, maximum: 100 }, presence: true
