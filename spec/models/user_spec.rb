@@ -39,6 +39,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "screen method" do
+let(:user) { User.create!(name: "Bloccit User 2", email: "another_user@bloccit.com", password: "password") }
 
     it "should capitalize first and last name" do
       user.update_attributes!(name: 'kurt zikaras')
