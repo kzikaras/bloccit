@@ -23,6 +23,8 @@ class UsersController < ApplicationController
         end
     end
 
+    
+
     # def confirm
     #     @user = User.new
     #     @user.name = params[:user][:name]
