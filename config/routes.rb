@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  post 'users/confirm' => 'users#confirm'
+  # post 'users/confirm' => 'users#confirm'
 
   # #2
 
