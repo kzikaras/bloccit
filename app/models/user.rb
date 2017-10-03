@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_many :posts
 
     def screen
         logger.info " @@@@@@@@@@@@@@@@@  FIELD ARE: #{self.name}"

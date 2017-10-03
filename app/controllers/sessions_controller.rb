@@ -21,6 +21,6 @@ class SessionsController < ApplicationController
         # #3
         destroy_session(current_user)
         flash[:notice] = "You've been signed out, come back soon!"
-        redirect_to route_path
+        redirect_to root_path
     end
 end
