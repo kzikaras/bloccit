@@ -96,10 +96,16 @@ puts "#{Topic.count} topics created"
 end
 
 
-user = User.first
+admin = User.create!(
+    name: 'Admin User',
+    email: 'admin@example.com',
+    password: 'helloworld',
+    role: 'admin'
+)
 
-user.update_attributes!(
-    email: 'savemyday15@aol.com',
+member = User.create!(
+    name: 'Member User',
+    email: 'member@example.com',
     password: 'helloworld'
 )
 
