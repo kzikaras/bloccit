@@ -34,7 +34,7 @@ class Post < ApplicationRecord
 
 
     private
-
+    # create vote method
     def create_vote
         user.votes.create(value: 1, post: self)
     end
