@@ -2,6 +2,7 @@ class Post < ApplicationRecord
     belongs_to :topic, optional: true
     belongs_to :user, optional: true
     has_many :comments, dependent: :destroy
+    has_many :favorites, dependent: :destroy
 
     has_many :votes, dependent: :destroy
 
