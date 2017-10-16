@@ -19,6 +19,7 @@ group :development, :test do
   gem 'rspec-rails', '~>3.0'
   gem 'shoulda'
   gem 'rails-controller-testing'
+  gem "letter_opener"
 end
 
 # Use SCSS for stylesheets
@@ -38,5 +39,7 @@ gem 'bootstrap-sass'
 gem 'bcrypt'
 
 gem 'figaro', '1.0'
+
+
 
 

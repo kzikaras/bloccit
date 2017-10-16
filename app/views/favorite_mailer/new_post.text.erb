@@ -2,4 +2,4 @@ You favorited your own post "<%= @post.title %>"
 
 You will receive updates on this post from now on!
 
- Visit online at: <%= topic_post_url(@post.topic, @post, anchor: "comment-#{@comment.id}") %>
+ Visit online at: <%= topic_post_url(@post.topic, @post, anchor: "post-#{@post.id}") %>
