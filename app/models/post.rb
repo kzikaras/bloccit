@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
-    belongs_to :topic, optional: true
-    belongs_to :user, optional: true
+    belongs_to :topic
+    belongs_to :user
     has_many :comments, dependent: :destroy
     has_many :favorites, dependent: :destroy
 
@@ -30,4 +30,6 @@ class Post < ApplicationRecord
         new_rank = points + age_in_days
         update_attribute(:rank, new_rank)
     end
+
+    #comme
 end
