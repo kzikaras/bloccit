@@ -7,11 +7,9 @@ RSpec.describe Post, type: :model do
   let(:title) {RandomData.random_sentence}
   let(:body) {RandomData.random_paragraph}
 
-  # #3
-  let(:topic) {Topic.create!(name: name, description: description)}
-  # #4
-  let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
-  let(:post) { topic.posts.create!(title: title, body: body, user: user) }
+  let(:topic) { create(:topic) }
+  let(:user) { create(:user) }
+  let(:post) { create(:post) }
 
   it { is_expected.to have_many(:comments) }
   it { is_expected.to have_many(:votes) }
@@ -31,7 +29,7 @@ RSpec.describe Post, type: :model do
   # #2
   describe "attributes" do
     it "Has a title and body attribute" do
-      expect(post).to have_attributes(title: title, body: body, user: user)
+      expect(post).to have_attributes(title: post.title, body: post.body)
     end
   end
 

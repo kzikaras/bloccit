@@ -2,14 +2,14 @@ require 'rails_helper'
 include SessionsHelper
 
 RSpec.describe FavoritesController, type: :controller do
-  let(:my_user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
-  let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
-  let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: my_user) }
+    let(:my_topic) { create(:topic) }
+    let(:my_user) { create(:user) }
+    let(:my_post) { create(:post, topic: my_topic, user: my_user) }
 
     context 'guest user' do
         describe 'POST create' do
             it 'redirects the user to the sign in view' do
-            post :create, { post_id: my_post.id }
+            post :create, params:{ post_id: my_post.id }
             # #7
             expect(response).to redirect_to(new_session_path)
             end
@@ -17,7 +17,7 @@ RSpec.describe FavoritesController, type: :controller do
         describe 'DELETE destroy' do
             it 'redirects the user to the sign in view' do
                 favorite = my_user.favorites.where(post: my_post).create
-                delete :destroy, { post_id: my_post.id, id: favorite.id }
+                delete :destroy, params:{ post_id: my_post.id, id: favorite.id }
                 expect(response).to redirect_to(new_session_path)
             end
         end
@@ -31,7 +31,7 @@ RSpec.describe FavoritesController, type: :controller do
         describe 'POST create' do
                 # #8
             it 'redirects to the posts show view' do
-                post :create, { post_id: my_post.id }
+                post :create, params:{ post_id: my_post.id }
                 expect(response).to redirect_to([my_topic, my_post])
             end
 
@@ -39,7 +39,7 @@ RSpec.describe FavoritesController, type: :controller do
                     # #9
                 expect(my_user.favorites.find_by_post_id(my_post.id)).to be_nil
 
-                post :create, { post_id: my_post.id }
+                post :create, params:{ post_id: my_post.id }
 
                         # #10
                 expect(my_user.favorites.find_by_post_id(my_post.id)).not_to be_nil
@@ -50,7 +50,7 @@ RSpec.describe FavoritesController, type: :controller do
     describe 'DELETE destroy' do
         it 'redirects to the posts show view' do
           favorite = my_user.favorites.where(post: my_post).create
-          delete :destroy, { post_id: my_post.id, id: favorite.id }
+          delete :destroy, params:{ post_id: my_post.id, id: favorite.id }
           expect(response).to redirect_to([my_topic, my_post])
         end
   
@@ -59,7 +59,7 @@ RSpec.describe FavoritesController, type: :controller do
                     # #16
           expect( my_user.favorites.find_by_post_id(my_post.id) ).not_to be_nil
   
-          delete :destroy, { post_id: my_post.id, id: favorite.id }
+          delete :destroy, params:{ post_id: my_post.id, id: favorite.id }
   
                         # #17
           expect( my_user.favorites.find_by_post_id(my_post.id) ).to be_nil
