@@ -22,8 +22,31 @@
 </div>
 
 
-<h2>Posts</h2>
-<%= render @user.posts %>
 
-<h2>Comments</h2>
-<%= render @user.comments %>
+<% if detectExistence(current_user.posts) == true %>
+    <h2>Posts</h2>
+    <%= render @user.posts %>
+<% else %>
+    <h2><%= "#{current_user.name} has not submitted any posts yet" %></h2>
+<% end %>
+
+<% if detectExistence(current_user.comments) == true %>
+    <h2>Comments</h2>
+    <%= render @user.comments %>
+<% else %>
+    <h2><%= "#{current_user.name} has not submitted any comments yet" %></h2>
+<% end %>
+
+<% if detectExistence(current_user.favorites) == true %>
+    <div class="media-left">
+    <h2>Favorites</h2>
+    <% current_user.favorites.each do |favorite| %>
+        <%= image_tag favorite.post.user.avatar_url(100) %><%= p favorite.post.title %>
+        <p>Votes:</p><%= favorite.post.votes.count %>
+        <p>Comments:</p><%= favorite.post.comments.count %>
+    <% end %>
+<% else %>
+    <h2><%= "#{current_user.name} has not submitted any favorites yet" %></h2>
+<% end %>
+</div>
+

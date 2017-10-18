@@ -132,4 +132,12 @@ let(:user) { User.create!(name: "Bloccit User 2", email: "another_user@bloccit.c
     end
   end
 
+  describe "show view is accurate" do
+    
+    it "returns a list of users favorites"
+      let(:user) { create(:user, email: "blochead@bloc.io") }
+      expect(user.favorites).to not_be_nil
+    end
+  end
+
 end

@@ -5,7 +5,7 @@ RSpec.describe Comment, type: :model do
   let(:user) { create(:user) }
   let(:post) { create(:post) }
   
-  let(:comment) { Comment.create!(body: 'Comment Body', post: post, user: user) }
+  let(:my_comment) { create(:comment, post: my_post, user: my_user) }
 
   it { is_expected.to belong_to(:post) }
   it { is_expected.to belong_to(:user) }
