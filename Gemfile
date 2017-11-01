@@ -19,11 +19,8 @@ group :development, :test do
   gem 'rspec-rails', '~>3.0'
   gem 'shoulda'
   gem 'rails-controller-testing'
-<<<<<<< HEAD
   gem 'factory_girl_rails', '~> 4.0'
-=======
   gem "letter_opener"
->>>>>>> assignment-31
 end
 
 # Use SCSS for stylesheets
