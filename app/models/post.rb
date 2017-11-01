@@ -14,6 +14,8 @@ class Post < ApplicationRecord
     validates :topic, presence: true
     validates :user, presence: true
 
+    after_create :auto_favorite
+
     def up_votes
         votes.where(value: 1).count
     end
@@ -32,5 +34,15 @@ class Post < ApplicationRecord
         update_attribute(:rank, new_rank)
     end
 
+<<<<<<< HEAD
     #comme
+=======
+
+    private
+
+    def auto_favorite
+        Favorite.create(post: self, user: self.user)
+        FavoriteMailer.new_post(self.user, self).deliver_now
+    end
+>>>>>>> assignment-31
 end
